@@ -4,4 +4,4 @@
 *.xlsx
 
 # Except the export directory
-!/export/
+/export/

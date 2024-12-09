@@ -1,2 +1,7 @@
+# Ignore data files
+*.csv 
+*.xls
+*.xlsx
+
 # Except the export directory
 !/export/

@@ -19,12 +19,15 @@ for index, row in df.iterrows():
     # Lấy giá trị id và name từ dòng hiện tại
     user_id = row['id']
     name = row['name']
+
+    # Lấy giá trị dob từ dòng hiện tại và chuyển sang định dạng dd-mm-yyyy
     dob = row['dob']
     dob = str(dob).replace("/", "-")
 
     # Mã hóa name sang Base64
     encoded_name = urllib.parse.quote(name)
     decode_name = urllib.parse.unquote(encoded_name)
+    
     # Thay thế dấu "+" và "/" thành "-"
     encoded_name = encoded_name.replace("+", "-").replace("/", "-").replace("=", "")
 

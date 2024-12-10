@@ -19,14 +19,17 @@ for index, row in df.iterrows():
     # Lấy giá trị id và name từ dòng hiện tại
     user_id = row['id']
     name = row['name']
+    dob = row['dob']
+    dob = str(dob).replace("/", "-")
 
     # Mã hóa name sang Base64
     encoded_name = urllib.parse.quote(name)
+    decode_name = urllib.parse.unquote(encoded_name)
     # Thay thế dấu "+" và "/" thành "-"
     encoded_name = encoded_name.replace("+", "-").replace("/", "-").replace("=", "")
 
     # Tạo giá trị cho QR code với name đã mã hóa
-    qr_value = f"https://huynhminhtri.dev?uuid={user_id}&name={encoded_name}"
+    qr_value = f"https://huynhminhtri.dev?uuid={user_id}&name={encoded_name}&dob={dob}"
     
     # Tạo QR code
     qr = qrcode.QRCode(
@@ -44,4 +47,4 @@ for index, row in df.iterrows():
     # Đường dẫn lưu file QR code
     output_path = os.path.join(output_dir, f"{name}.png")
     img.save(output_path)
-    print(f"Đã tạo QR code cho {name}, lưu tại {output_path} code_name {encoded_name}")
+    print(f"Đã tạo QR code cho {name}, lưu tại {output_path} code_name {encoded_name} dov {dob}, fullname {decode_name}")

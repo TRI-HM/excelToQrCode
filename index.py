@@ -5,7 +5,7 @@ import urllib.parse
 
 # Đường dẫn file Excel và thư mục xuất QR code
 input_file = "apec_hn.xlsx"  # Đổi thành đường dẫn tới file Excel của bạn
-output_dir = "export"
+output_dir = "export-jpg"
 
 # Tạo thư mục export nếu chưa tồn tại
 if not os.path.exists(output_dir):
@@ -19,6 +19,7 @@ for index, row in df.iterrows():
     # Lấy giá trị id và name từ dòng hiện tại
     user_id = row['no']
     name = row['name']
+    name = str(name).replace("|", "")
     link = row['link'] if 'link' in row else ''
 
     # Lấy giá trị dob từ dòng hiện tại và chuyển sang định dạng dd-mm-yyyy
@@ -47,10 +48,10 @@ for index, row in df.iterrows():
     qr.make(fit=True)
     
     # Tạo ảnh QR code
-    img = qr.make_image(fill_color="black", back_color="transparent")
+    img = qr.make_image(fill_color="black", back_color="white") # back_color="transparent"
     
     # Đường dẫn lưu file QR code
-    output_path = os.path.join(output_dir, f"{user_id}_{name}.png")
+    output_path = os.path.join(output_dir, f"{user_id}_{name}.jpg") #.png
     img.save(output_path)
     print(f"Đã tạo QR code cho {name}. Lưu tại {output_path}")
     print(f"Giá trị QR code: {link}")

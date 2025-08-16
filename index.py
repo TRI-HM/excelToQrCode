@@ -5,7 +5,8 @@ import urllib.parse
 
 # Đường dẫn file Excel và thư mục xuất QR code
 input_file = "apec_hn.xlsx"  # Đổi thành đường dẫn tới file Excel của bạn
-output_dir = "export-jpg"
+project_name = "apec_hn_jpg"
+output_dir = f"export/{project_name}"
 
 # Tạo thư mục export nếu chưa tồn tại
 if not os.path.exists(output_dir):

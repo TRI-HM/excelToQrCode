@@ -6,3 +6,7 @@
 # Except the export directory
 /export/
 /export-*/
+
+/venv/
+/env/
+/.venv/
